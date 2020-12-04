@@ -359,7 +359,8 @@ MonoBehaviour:
   Probabilitydamage: 20
   m_enemydeath: {fileID: 2458892094824664337, guid: f0d3095e386107c418f297b9118af8d4,
     type: 3}
-  DamegeEffect: {fileID: 0}
+  DamegeEffect: {fileID: 2614505649600979364, guid: 82d95f27548c21143be752c9e52eaaf6,
+    type: 3}
   Slider: {fileID: 3854127526921897618}
   canvas: {fileID: 3854127526616707418}
 --- !u!1 &3853553914543241762

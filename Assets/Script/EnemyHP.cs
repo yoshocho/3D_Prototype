@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Enemy : MonoBehaviour
+public class EnemyHP : MonoBehaviour
 {
     /// <summary>
     /// 敵の最大HP
@@ -45,6 +45,11 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerAttack")
         {
+
+            if (DamegeEffect)
+            {
+                Instantiate(DamegeEffect, this.transform.position, DamegeEffect.transform.rotation);
+            }
             //クリティカルダメージ
             //int critical = Random.Range(1,10);
 
