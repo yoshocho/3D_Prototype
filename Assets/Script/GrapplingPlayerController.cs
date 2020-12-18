@@ -15,8 +15,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GrapplingPlayerController : MonoBehaviour
 {
-    [SerializeField] float m_targetRange = 5f;
 
+    [SerializeField] float sab_movingSpeed = 5f;
     /// <summary>動く速さ</summary>
     [SerializeField] float m_movingSpeed = 5f;
     /// <summary>空中で操作した際に加える力</summary>
@@ -29,17 +29,29 @@ public class GrapplingPlayerController : MonoBehaviour
     [SerializeField] float m_isGroundedLength = 0.1f;
     /// <summary>攻撃判定のトリガー</summary>
     [SerializeField] Collider m_attackTrigger = null;
+    /// <summary>
+    /// 剣を振った時の軌跡（エフェクト）
+    /// </summary>
+    [SerializeField] GameObject m_attackEffect = null;
+
+    [SerializeField] GameObject m_sowd = null;
+
+    [SerializeField] GameObject sab_sowd = null;
 
     Rigidbody m_rb;
     Animator m_anim;
+    lock_on_manager m_Lock;
     //private bool mouseClick = false;
-    
+
 
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
         m_anim = GetComponent<Animator>();
         m_attackTrigger.gameObject.SetActive(false);
+        m_attackTrigger.gameObject.SetActive(false);
+        //m_sowd.gameObject.SetActive(false);
+        //sab_sowd.gameObject.SetActive(true);
     }
 
     void Update()
@@ -90,6 +102,7 @@ public class GrapplingPlayerController : MonoBehaviour
                 //攻撃時に止まるようにする
                 //m_movingSpeed = 0;
 
+                // this.transform.LookAt(target);
                 if (m_anim)
                 {
                     m_anim.SetTrigger("Attack");
@@ -161,4 +174,40 @@ public class GrapplingPlayerController : MonoBehaviour
             m_attackTrigger.gameObject.SetActive(false);
         }
     }
+
+    void Beginmovestop()
+    {
+        //this.transform.LookAt(m_Lock)
+        //if (m_attackEffect)
+        //{
+        //    m_attackEffect.gameObject.SetActive(true);
+        //}
+        //lock_on_manager.FindObjectOfType<lock_on_manager>();
+        //if (m_sowd)
+        //{
+        //    m_sowd.gameObject.SetActive(true);
+        //    sab_sowd.gameObject.SetActive(false);
+        //}
+
+
+        m_movingSpeed = 0;
+        
+
+    }
+    public void Endmovestop()
+    {
+
+        //if (m_attackEffect)
+        //{
+        //    m_attackEffect.gameObject.SetActive(false);
+        //}
+        m_movingSpeed = sab_movingSpeed;
+
+        //if (m_sowd)
+        //{
+        //    m_sowd.gameObject.SetActive(false);
+        //    sab_sowd.gameObject.SetActive(true);
+        //}
+    }
+
 }

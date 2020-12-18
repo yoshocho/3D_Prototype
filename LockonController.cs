@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class GrapplingTargetController : MonoBehaviour
+public class Lockoncontroller : MonoBehaviour
 {
     bool m_isTargetable = false;
 
