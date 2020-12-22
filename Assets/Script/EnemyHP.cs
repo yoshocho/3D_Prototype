@@ -26,6 +26,7 @@ public class EnemyHP : MonoBehaviour
     /// 現在の敵のHP
     /// </summary>
     int HP = 0;
+    public Text Text;
 
     public Slider Slider;
 
@@ -50,6 +51,8 @@ public class EnemyHP : MonoBehaviour
             {
                 Instantiate(DamegeEffect, this.transform.position, DamegeEffect.transform.rotation);
             }
+
+            
             //クリティカルダメージ
             //int critical = Random.Range(1,10);
 
@@ -84,6 +87,13 @@ public class EnemyHP : MonoBehaviour
 
         }
     }
+    
+
+
+
+
+
+
 
 
     // Update is called once per frame

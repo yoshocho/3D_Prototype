@@ -12,7 +12,7 @@ using UnityEngine;
 /// （※１）AddForce() 動かすことは問題ではなく、挙動や実装を比較するために変えている。
 /// （※２）World 座標系で動かすと、カメラの回転に対応できないため
 /// </summary>
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public class GrapplingPlayerController : MonoBehaviour
 {
 
@@ -29,18 +29,18 @@ public class GrapplingPlayerController : MonoBehaviour
     [SerializeField] float m_isGroundedLength = 0.1f;
     /// <summary>攻撃判定のトリガー</summary>
     [SerializeField] Collider m_attackTrigger = null;
+
+    [SerializeField] Collider m_skillTrigger = null;
     /// <summary>
-    /// 剣を振った時の軌跡（エフェクト）
+    /// スキルのエフェクト
     /// </summary>
-    [SerializeField] GameObject m_attackEffect = null;
+    [SerializeField] GameObject m_skillEF = null;
 
-    [SerializeField] GameObject m_sowd = null;
-
-    [SerializeField] GameObject sab_sowd = null;
+    
 
     Rigidbody m_rb;
     Animator m_anim;
-    lock_on_manager m_Lock;
+    EnemyDetector m_enemyDetector = null;
     //private bool mouseClick = false;
 
 
@@ -48,10 +48,9 @@ public class GrapplingPlayerController : MonoBehaviour
     {
         m_rb = GetComponent<Rigidbody>();
         m_anim = GetComponent<Animator>();
+        m_enemyDetector = GetComponent<EnemyDetector>();
         m_attackTrigger.gameObject.SetActive(false);
-        m_attackTrigger.gameObject.SetActive(false);
-        //m_sowd.gameObject.SetActive(false);
-        //sab_sowd.gameObject.SetActive(true);
+       
     }
 
     void Update()
@@ -99,13 +98,25 @@ public class GrapplingPlayerController : MonoBehaviour
             // 攻撃する
             if (Input.GetButtonDown("Fire1"))
             {
-                //攻撃時に止まるようにする
-                //m_movingSpeed = 0;
-
-                // this.transform.LookAt(target);
+                if (m_enemyDetector.Target)
+                {
+                    this.transform.LookAt(m_enemyDetector.Target.transform);
+                }
+                
                 if (m_anim)
                 {
                     m_anim.SetTrigger("Attack");
+                }
+            }
+
+           
+
+            if (Input.GetButtonDown("Skill"))
+            {
+                // this.transform.LookAt(target);
+                if (m_anim)
+                {
+                    m_anim.SetTrigger("SkillAttack");
                 }
             }
         }
@@ -177,37 +188,21 @@ public class GrapplingPlayerController : MonoBehaviour
 
     void Beginmovestop()
     {
-        //this.transform.LookAt(m_Lock)
-        //if (m_attackEffect)
-        //{
-        //    m_attackEffect.gameObject.SetActive(true);
-        //}
-        //lock_on_manager.FindObjectOfType<lock_on_manager>();
-        //if (m_sowd)
-        //{
-        //    m_sowd.gameObject.SetActive(true);
-        //    sab_sowd.gameObject.SetActive(false);
-        //}
-
-
         m_movingSpeed = 0;
-        
-
     }
     public void Endmovestop()
-    {
-
-        //if (m_attackEffect)
-        //{
-        //    m_attackEffect.gameObject.SetActive(false);
-        //}
+    {  
         m_movingSpeed = sab_movingSpeed;
-
-        //if (m_sowd)
-        //{
-        //    m_sowd.gameObject.SetActive(false);
-        //    sab_sowd.gameObject.SetActive(true);
-        //}
     }
+
+    //void SkillAttackStart() 
+    //{
+
+    //}
+
+    //void SkillAttackEnd()
+    //{
+
+    //}
 
 }

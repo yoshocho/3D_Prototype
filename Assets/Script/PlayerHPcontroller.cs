@@ -9,23 +9,34 @@ public class PlayerHPcontroller : MonoBehaviour
     /// 最大HP
     /// </summary>
     [SerializeField] int maxHP = 100;
+
+    [SerializeField] int maxMP = 100;
+
     /// <summary>
     /// 現在のHP
     /// </summary>
     int HP = 0;
 
+    int MP = 0;
+
 
     /// <summary>
     /// シリンダー（HPバー）をセット
     /// </summary>
-    public Slider Slider;
+    public Slider HPbar;
+
+    public Slider MPbar;
 
     void Start()
     {
         ///シリンダーの量をマックスにし、最大HPを現在のHPに入れる
-        Slider.value = 1;
+        HPbar.value = 1;
+
+        MPbar.value = 1;
 
         HP = maxHP;
+
+        MP = maxMP;
     }
 
     // Update is called once per frame
@@ -49,9 +60,12 @@ public class PlayerHPcontroller : MonoBehaviour
             HP = HP - damege;
 
             ///HPをシリンダーに反映させる
-            Slider.value = (float)HP / (float)maxHP;
+            HPbar.value = (float)HP / (float)maxHP;
 
         }
+        //if (collision.gameObject.tag == "")
+        //{
 
+        //}
     }
 }
