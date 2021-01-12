@@ -34,7 +34,7 @@ public class GrapplingPlayerController : MonoBehaviour
     /// <summary>
     /// スキルのエフェクト
     /// </summary>
-    [SerializeField] GameObject m_skillEF = null;
+    [SerializeField] GameObject m_skillObj = null;
 
     
 
@@ -106,14 +106,17 @@ public class GrapplingPlayerController : MonoBehaviour
                 if (m_anim)
                 {
                     m_anim.SetTrigger("Attack");
+                    
                 }
             }
-
-           
-
+           //skillの発動
             if (Input.GetButtonDown("Skill"))
             {
-                // this.transform.LookAt(target);
+                if (m_enemyDetector.Target)
+                {
+                    this.transform.LookAt(m_enemyDetector.Target.transform);
+                   
+                }
                 if (m_anim)
                 {
                     m_anim.SetTrigger("SkillAttack");
@@ -163,6 +166,11 @@ public class GrapplingPlayerController : MonoBehaviour
         return isGrounded;
     }
 
+    void Skill() 
+    {
+        var skillObjInstans = Instantiate<GameObject>(m_skillObj, transform.position + transform.forward, Quaternion.identity);
+        skillObjInstans.GetComponent<SkillController>().SetDirection(transform.forward);
+    }
     /// <summary>
     /// 攻撃判定を有効にする
     /// </summary>

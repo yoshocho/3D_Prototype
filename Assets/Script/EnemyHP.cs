@@ -26,7 +26,8 @@ public class EnemyHP : MonoBehaviour
     /// 現在の敵のHP
     /// </summary>
     int HP = 0;
-    public Text Text;
+
+    [SerializeField] public GameObject EnemyDamageUI;
 
     public Slider Slider;
 
@@ -51,25 +52,13 @@ public class EnemyHP : MonoBehaviour
             {
                 Instantiate(DamegeEffect, this.transform.position, DamegeEffect.transform.rotation);
             }
-
+            //ダメージを受けるとダメージ数を出すUI
+            var UI = Instantiate<GameObject>(EnemyDamageUI, collision.bounds.center, Quaternion.identity);
             
             //クリティカルダメージ
-            //int critical = Random.Range(1,10);
 
             int damege = 20;
-            //if (critical / 2 == 0)
-            //{
-            //    HP = HP - damege;
-            //    Slider.value = (float)HP / (float)maxHP;
-
-            //}
-            //else
-            //{
-            //    HP = HP - damege + Probabilitydamage;
-            //    Debug.Log("クリティカル！");
-            //    Slider.value = (float)HP / (float)maxHP;
-            //}
-
+           
             HP = HP - damege;
             Slider.value = (float)HP / (float)maxHP;
 
