@@ -77,20 +77,10 @@ public class EnemyHP : MonoBehaviour
         }
     }
     
-
-
-
-
-
-
-
-
     // Update is called once per frame
     void Update()
     {
         ///敵のキャンバスを常にメインカメラに向かせる
         canvas.transform.rotation = Camera.main.transform.rotation;
     }
-
-    
 }

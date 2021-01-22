@@ -36,13 +36,12 @@ public class GrapplingPlayerController : MonoBehaviour
     /// </summary>
     [SerializeField] GameObject m_skillObj = null;
 
-    
+
 
     Rigidbody m_rb;
     Animator m_anim;
     EnemyDetector m_enemyDetector = null;
     //private bool mouseClick = false;
-
 
     void Start()
     {
@@ -50,7 +49,9 @@ public class GrapplingPlayerController : MonoBehaviour
         m_anim = GetComponent<Animator>();
         m_enemyDetector = GetComponent<EnemyDetector>();
         m_attackTrigger.gameObject.SetActive(false);
-       
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     void Update()
@@ -95,6 +96,8 @@ public class GrapplingPlayerController : MonoBehaviour
                 }
             }
 
+            
+
             // 攻撃する
             if (Input.GetButtonDown("Fire1"))
             {
@@ -102,20 +105,20 @@ public class GrapplingPlayerController : MonoBehaviour
                 {
                     this.transform.LookAt(m_enemyDetector.Target.transform);
                 }
-                
+
                 if (m_anim)
                 {
                     m_anim.SetTrigger("Attack");
-                    
+
                 }
             }
-           //skillの発動
+            //skillの発動
             if (Input.GetButtonDown("Skill"))
             {
                 if (m_enemyDetector.Target)
                 {
                     this.transform.LookAt(m_enemyDetector.Target.transform);
-                   
+
                 }
                 if (m_anim)
                 {
@@ -166,7 +169,7 @@ public class GrapplingPlayerController : MonoBehaviour
         return isGrounded;
     }
 
-    void Skill() 
+    void Skill()
     {
         var skillObjInstans = Instantiate<GameObject>(m_skillObj, transform.position + transform.forward, Quaternion.identity);
         skillObjInstans.GetComponent<SkillController>().SetDirection(transform.forward);
@@ -199,7 +202,7 @@ public class GrapplingPlayerController : MonoBehaviour
         m_movingSpeed = 0;
     }
     public void Endmovestop()
-    {  
+    {
         m_movingSpeed = sab_movingSpeed;
     }
 
@@ -212,5 +215,5 @@ public class GrapplingPlayerController : MonoBehaviour
     //{
 
     //}
-
 }
+
