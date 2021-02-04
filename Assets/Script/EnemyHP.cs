@@ -38,16 +38,17 @@ public class EnemyHP : MonoBehaviour
 
         HP = maxHP;
 
-
+        
     }
 
     public Canvas canvas;
 
     private void OnTriggerEnter(Collider collision)
     {
+
         if (collision.gameObject.tag == "PlayerAttack")
         {
-
+            Slider.gameObject.SetActive(true);
             if (DamegeEffect)
             {
                 Instantiate(DamegeEffect, this.transform.position, DamegeEffect.transform.rotation);
