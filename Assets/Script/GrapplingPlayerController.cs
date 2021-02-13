@@ -36,7 +36,7 @@ public class GrapplingPlayerController : MonoBehaviour
     /// </summary>
     [SerializeField] GameObject m_skillObj = null;
 
-
+    [SerializeField] public int m_atackDamage = 5;
 
     Rigidbody m_rb;
     Animator m_anim;

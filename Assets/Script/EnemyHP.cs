@@ -28,8 +28,9 @@ public class EnemyHP : MonoBehaviour
     int HP = 0;
 
     [SerializeField] public GameObject EnemyDamageUI;
-
+    Transform enemyCanvas;
     public Slider Slider;
+    GrapplingPlayerController m_gp;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,11 @@ public class EnemyHP : MonoBehaviour
 
         HP = maxHP;
 
-        
+        m_gp = FindObjectOfType<GrapplingPlayerController>();
+
+
+
+
     }
 
     public Canvas canvas;
@@ -48,36 +53,41 @@ public class EnemyHP : MonoBehaviour
 
         if (collision.gameObject.tag == "PlayerAttack")
         {
-            Slider.gameObject.SetActive(true);
+
             if (DamegeEffect)
             {
                 Instantiate(DamegeEffect, this.transform.position, DamegeEffect.transform.rotation);
             }
-            //ダメージを受けるとダメージ数を出すUI
-            var UI = Instantiate<GameObject>(EnemyDamageUI, collision.bounds.center, Quaternion.identity);
-            
-            //クリティカルダメージ
 
-            int damege = 20;
-           
-            HP = HP - damege;
+            Slider.gameObject.SetActive(true);
+            //int damege = 20;
+
+            HP = HP - m_gp.m_atackDamage;
             Slider.value = (float)HP / (float)maxHP;
+
+            //ダメージを受けるとダメージ数を出すUI
+            enemyCanvas = GameObject.FindGameObjectWithTag("EnemyCanvas").transform;
+            //Instantiate<GameObject>(EnemyDamageUI, collision.bounds.center, Quaternion.identity);
+            var UI = Instantiate(EnemyDamageUI, collision.bounds.center, Quaternion.identity);
+            UI.transform.SetParent(enemyCanvas.transform);
+            Debug.Log(EnemyDamageUI);
+
 
             ///HPが0になると
             if (HP == 0)
             {
-               /// 敵が消滅し、死亡アニメーションをプレハブから呼び、敵の位置に配置(2Dシューティングで先生がやっていたこと)
+                /// 敵が消滅し、死亡アニメーションをプレハブから呼び、敵の位置に配置(2Dシューティングで先生がやっていたこと)
                 if (m_enemydeath)
                 {
                     Instantiate(m_enemydeath, this.transform.position, m_enemydeath.transform.rotation);
                 }
                 Destroy(this.gameObject);
             }
-           
+
 
         }
     }
-    
+
     // Update is called once per frame
     void Update()
     {
