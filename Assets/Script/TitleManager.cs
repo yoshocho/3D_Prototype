@@ -13,6 +13,8 @@ public class TitleManager : MonoBehaviour
 {
     /// <summary>Timeline を制御しているオブジェクト</summary>
     [SerializeField] PlayableDirector m_director = null;
+
+    [SerializeField] PlayableDirector m_StartTime = null;
     /// <summary>スタートボタンのアニメーション。スタートする時にアニメーションを切り替える</summary>
     [SerializeField] Animator m_startButton = null;
     /// <summary>BGM を流している AudioSource。スタートする時に BGM を止めてゲームスタート用の効果音を鳴らす。</summary>
@@ -32,14 +34,17 @@ public class TitleManager : MonoBehaviour
         // Timeline 再生中ならばスキップし、再生が終わっていたらゲームを開始する。
         if (Input.GetMouseButtonDown(0))
         {
-            //if (m_director.state == PlayState.Playing)
-            //{
-            //    Skip();
-            //}
-            //else if (!m_isStarted)
-            //{
+            PlayTimeline();
+
+
+            if (m_director.state == PlayState.Playing)
+            {
+               // Skip();
+            }
+            else if (!m_isStarted)
+            {
                 StartGame();
-            //}
+            }
         }
     }
 
@@ -52,6 +57,7 @@ public class TitleManager : MonoBehaviour
         }
 
         m_director.Play();
+        StartGame();
     }
     
 
@@ -61,7 +67,6 @@ public class TitleManager : MonoBehaviour
     void StartGame()
     {
         m_isStarted = true;
-        PlayTimeline();
         m_startButton.Play("Start");
         m_audio.clip = m_gameStartSfx;
         m_audio.Play();
