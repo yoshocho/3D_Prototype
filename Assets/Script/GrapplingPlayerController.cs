@@ -96,7 +96,7 @@ public class GrapplingPlayerController : MonoBehaviour
                 }
             }
 
-            
+
 
             // 攻撃する
             if (Input.GetButtonDown("Fire1"))
@@ -206,14 +206,17 @@ public class GrapplingPlayerController : MonoBehaviour
         m_movingSpeed = sab_movingSpeed;
     }
 
-    //void SkillAttackStart() 
-    //{
+    void dash_speed()
+    {
 
-    //}
+    }
 
-    //void SkillAttackEnd()
-    //{
+    void End_dash_speed()
+    {
 
-    //}
+    }
+        
 }
+
+
 

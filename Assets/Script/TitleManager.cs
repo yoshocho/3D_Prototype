@@ -24,7 +24,7 @@ public class TitleManager : MonoBehaviour
     /// <summary>フェード用のパネル</summary>
     [SerializeField] Image m_fadePanel = null;
     /// <summary>フェードにかける時間（秒）</summary>
-    [SerializeField] float m_fadeTime = 1.5f;
+    [SerializeField] float m_fadeTime = 2f;
     bool m_isStarted = false;
 
     void Update()
@@ -32,24 +32,28 @@ public class TitleManager : MonoBehaviour
         // Timeline 再生中ならばスキップし、再生が終わっていたらゲームを開始する。
         if (Input.GetMouseButtonDown(0))
         {
-            if (m_director.state == PlayState.Playing)
-            {
-                Skip();
-            }
-            else if (!m_isStarted)
-            {
+            //if (m_director.state == PlayState.Playing)
+            //{
+            //    Skip();
+            //}
+            //else if (!m_isStarted)
+            //{
                 StartGame();
-            }
+            //}
         }
     }
 
-    /// <summary>
-    /// Timeline の再生をスキップする。
-    /// </summary>
-    void Skip()
+    public void PlayTimeline()
     {
-        m_director.playableGraph.GetRootPlayable(0).SetSpeed(300);
+        if (m_director.playableAsset == null)
+        {
+            Debug.LogError("タイムラインをセットしてないよ");
+            return;
+        }
+
+        m_director.Play();
     }
+    
 
     /// <summary>
     /// ゲームを開始する。
@@ -57,9 +61,11 @@ public class TitleManager : MonoBehaviour
     void StartGame()
     {
         m_isStarted = true;
+        PlayTimeline();
         m_startButton.Play("Start");
         m_audio.clip = m_gameStartSfx;
         m_audio.Play();
+
         StartCoroutine(LoadSceneWithFade(m_fadeTime));
     }
 
