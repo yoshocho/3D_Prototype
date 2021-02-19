@@ -5,7 +5,8 @@
 //
 using UnityEngine;
 using System.Collections;
-using System.Security.Policy;
+//using System.Security.Policy;
+using UnityChan;
 
 namespace UnityChan
 {
