@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class EnemyController : MonoBehaviour
+public class EnemyHP : MonoBehaviour
 {
     /// <summary>
     /// 敵の最大HP
@@ -27,10 +27,6 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     int HP = 0;
 
-    //[SerializeField] float DeathTime = 2f;
-
-    Animator m_anim;
-
     [SerializeField] public GameObject EnemyDamageUI;
     Transform enemyCanvas;
     public Slider Slider;
@@ -45,7 +41,8 @@ public class EnemyController : MonoBehaviour
 
         m_gp = FindObjectOfType<GrapplingPlayerController>();
 
-        m_anim = GetComponent<Animator>();
+
+
 
     }
 
@@ -80,26 +77,15 @@ public class EnemyController : MonoBehaviour
             if (HP == 0)
             {
                 /// 敵が消滅し、死亡アニメーションをプレハブから呼び、敵の位置に配置(2Dシューティングで先生がやっていたこと)
-                //if (m_enemydeath)
-                //{
-                //    Instantiate(m_enemydeath, this.transform.position, m_enemydeath.transform.rotation);
-                //}
-                if (m_anim)
+                if (m_enemydeath)
                 {
-                    m_anim.SetTrigger("Death");
+                    Instantiate(m_enemydeath, this.transform.position, m_enemydeath.transform.rotation);
                 }
-                StartCoroutine(Death());
-                Debug.Log("コルーチン開始");
+                Destroy(this.gameObject);
             }
+
+
         }
-    }
-
-    IEnumerator Death()
-    {  
-
-        yield return new WaitForSeconds(2f);
-        Destroy(this.gameObject);
-        Debug.Log("破棄");
     }
 
     // Update is called once per frame
