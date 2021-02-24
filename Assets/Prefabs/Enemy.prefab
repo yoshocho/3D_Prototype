@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 3851377606710479976}
   - component: {fileID: 3760092566757448634}
   - component: {fileID: 3854127527633619660}
-  - component: {fileID: 3854127527633619661}
+  - component: {fileID: 1585172347320314107}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -343,7 +343,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.53
   m_Center: {x: 0, y: 0.41, z: 0}
---- !u!114 &3854127527633619661
+--- !u!114 &1585172347320314107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,16 +352,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3853477935796578774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce1f1231c0ff7e4b9dc4748a69226a9, type: 3}
+  m_Script: {fileID: 11500000, guid: a4c9f1ab2146cfd46a2226e804ce3903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 60
-  Probabilitydamage: 20
-  m_enemydeath: {fileID: 2204114028630492225, guid: 73e5cc0bea86fbe4bb58d702be270e39,
-    type: 3}
   DamegeEffect: {fileID: 3757732188287539008, guid: cc96c1f5387f8fa4d9d4690bb7b5f47c,
     type: 3}
-  EnemyDamageUI: {fileID: 0}
+  EnemyDeathTime: 1.9
   Slider: {fileID: 3854127526921897618}
   canvas: {fileID: 3854127526616707418}
 --- !u!1 &3853553914543241762
@@ -720,7 +717,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3854127526921897616}
   - component: {fileID: 3854127526921897618}
-  - component: {fileID: 3854127526921897617}
   m_Layer: 5
   m_Name: EnemyHPBar
   m_TagString: Untagged
@@ -799,25 +795,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3854127526921897617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3854127526921897623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ce1f1231c0ff7e4b9dc4748a69226a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 60
-  Probabilitydamage: 20
-  m_enemydeath: {fileID: 0}
-  DamegeEffect: {fileID: 0}
-  EnemyDamageUI: {fileID: 0}
-  Slider: {fileID: 3854127526921897618}
-  canvas: {fileID: 3854127526616707418}
 --- !u!1 &3854900571575839120
 GameObject:
   m_ObjectHideFlags: 0

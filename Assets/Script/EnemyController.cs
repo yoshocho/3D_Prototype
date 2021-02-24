@@ -3,31 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class EnemyHP : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     /// <summary>
     /// 敵の最大HP
     /// </summary>
     [SerializeField] int maxHP = 100;
     /// <summary>
-    /// クリティカルダメージ的な物をやろうとしましたが失敗、未使用
-    /// </summary>
-    [SerializeField] int Probabilitydamage = 20;
-    /// <summary>
-    /// 敵の死亡アニメーション
-    /// </summary>
-    [SerializeField] GameObject m_enemydeath = null;
-    /// <summary>
     /// ダメージを喰らった時のエフェクト
     /// </summary>
     [SerializeField] GameObject DamegeEffect = null;
+    /// <summary>
+    /// 敵が何秒後に消えるか決める時間
+    /// </summary>
+    [SerializeField] float EnemyDeathTime = 1;
     /// <summary>
     /// 現在の敵のHP
     /// </summary>
     int HP = 0;
 
-    [SerializeField] public GameObject EnemyDamageUI;
+    /// <summary>
+    /// クリティカルダメージ的な物をやろうとしましたが失敗、未使用
+    /// </summary>
+    //[SerializeField] int Probabilitydamage = 20;
+    /// <summary>
+    /// 敵の死亡アニメーション
+    /// </summary>
+    //[SerializeField] GameObject m_enemydeath = null;
+
+    //[SerializeField] public GameObject EnemyDamageUI;
+
+
+    Animator m_anim;
     Transform enemyCanvas;
     public Slider Slider;
     GrapplingPlayerController m_gp;
@@ -41,8 +48,7 @@ public class EnemyHP : MonoBehaviour
 
         m_gp = FindObjectOfType<GrapplingPlayerController>();
 
-
-
+        m_anim = GetComponent<Animator>();
 
     }
 
@@ -56,7 +62,7 @@ public class EnemyHP : MonoBehaviour
 
             if (DamegeEffect)
             {
-                Instantiate(DamegeEffect, this.transform.position, DamegeEffect.transform.rotation);
+                Instantiate(DamegeEffect, collision.transform.position, DamegeEffect.transform.rotation);
             }
 
             Slider.gameObject.SetActive(true);
@@ -66,26 +72,39 @@ public class EnemyHP : MonoBehaviour
             Slider.value = (float)HP / (float)maxHP;
 
             //ダメージを受けるとダメージ数を出すUI
-            enemyCanvas = GameObject.FindGameObjectWithTag("EnemyCanvas").transform;
+            //enemyCanvas = GameObject.FindGameObjectWithTag("EnemyCanvas").transform;
             //Instantiate<GameObject>(EnemyDamageUI, collision.bounds.center, Quaternion.identity);
-            var UI = Instantiate(EnemyDamageUI, collision.bounds.center, Quaternion.identity);
-            UI.transform.SetParent(enemyCanvas.transform);
-            Debug.Log(EnemyDamageUI);
+           // var UI = Instantiate(EnemyDamageUI, collision.bounds.center, Quaternion.identity);
+            //UI.transform.SetParent(enemyCanvas.transform);
+            //Debug.Log(EnemyDamageUI);
 
 
             ///HPが0になると
             if (HP == 0)
             {
                 /// 敵が消滅し、死亡アニメーションをプレハブから呼び、敵の位置に配置(2Dシューティングで先生がやっていたこと)
-                if (m_enemydeath)
+                //if (m_enemydeath)
+                //{
+                //    Instantiate(m_enemydeath, this.transform.position, m_enemydeath.transform.rotation);
+                //}
+                if (m_anim)
                 {
-                    Instantiate(m_enemydeath, this.transform.position, m_enemydeath.transform.rotation);
+                    m_anim.SetTrigger("Death");
                 }
-                Destroy(this.gameObject);
+                StartCoroutine(Death());
+                Debug.Log("コルーチン開始");
+                
+               
             }
-
-
         }
+    }
+
+    IEnumerator Death()
+    {
+
+        yield return new WaitForSeconds(EnemyDeathTime);
+        Destroy(this.gameObject);
+        Debug.Log("破棄");
     }
 
     // Update is called once per frame

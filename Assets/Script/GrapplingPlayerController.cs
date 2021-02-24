@@ -43,7 +43,7 @@ public class GrapplingPlayerController : MonoBehaviour
     EnemyDetector m_enemyDetector = null;
     //private bool mouseClick = false;
 
-    [SerializeField] bool m_PlayerOperation = true;
+    [SerializeField] private bool m_PlayerOperation = true;
 
     public bool PlayerOperation 
     {
