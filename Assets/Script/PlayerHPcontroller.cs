@@ -10,14 +10,14 @@ public class PlayerHPcontroller : MonoBehaviour
     /// </summary>
     [SerializeField] int maxHP = 100;
 
-    [SerializeField] int maxMP = 100;
+    //[SerializeField] int maxMP = 100;
 
     /// <summary>
     /// 現在のHP
     /// </summary>
     int HP = 0;
 
-    int MP = 0;
+    //int MP = 0;
 
 
     /// <summary>
@@ -25,18 +25,18 @@ public class PlayerHPcontroller : MonoBehaviour
     /// </summary>
     public Slider HPbar;
 
-    public Slider MPbar;
+    //public Slider MPbar;
 
     void Start()
     {
         ///シリンダーの量をマックスにし、最大HPを現在のHPに入れる
         HPbar.value = 1;
 
-        MPbar.value = 1;
+        //MPbar.value = 1;
 
         HP = maxHP;
 
-        MP = maxMP;
+        //MP = maxMP;
     }
 
     // Update is called once per frame
