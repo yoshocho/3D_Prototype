@@ -38,6 +38,10 @@ public class GrapplingPlayerController : MonoBehaviour
 
     [SerializeField] public int m_atackDamage = 5;
 
+    [SerializeField] AudioClip m_attackSfx = null;
+
+    AudioSource audioSource;
+
     Rigidbody m_rb;
     Animator m_anim;
     EnemyDetector m_enemyDetector = null;
@@ -59,6 +63,8 @@ public class GrapplingPlayerController : MonoBehaviour
         m_attackTrigger.gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -113,7 +119,7 @@ public class GrapplingPlayerController : MonoBehaviour
                     {
                         this.transform.LookAt(m_enemyDetector.Target.transform);
                     }
-
+                    
                     if (m_anim)
                     {
                         m_anim.SetTrigger("Attack");
@@ -218,14 +224,10 @@ public class GrapplingPlayerController : MonoBehaviour
         m_movingSpeed = sab_movingSpeed;
     }
 
-    void dash_speed()
+
+    void m_attackSound()
     {
-
-    }
-
-    void End_dash_speed()
-    {
-
+        audioSource.PlayOneShot(m_attackSfx);
     }
         
 }

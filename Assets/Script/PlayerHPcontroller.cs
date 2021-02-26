@@ -39,6 +39,18 @@ public class PlayerHPcontroller : MonoBehaviour
         //MP = maxMP;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "HeelItem" && Input.GetKey(""))
+        {
+            HP = HP += 40;
+
+            HPbar.value = (float)HP / (float)maxHP;
+        }
+
+    }
+
     // Update is called once per frame
     /// <summary>
     /// Enemyタグのものに触れるとHPを減らす
@@ -63,9 +75,8 @@ public class PlayerHPcontroller : MonoBehaviour
             HPbar.value = (float)HP / (float)maxHP;
 
         }
-        //if (collision.gameObject.tag == "")
-        //{
-
-        //}
+        
     }
+   
+
 }

@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1537,7 +1537,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: b0851a8fbc00c0d4c8158dc6778dc5fb, type: 2}
   m_InitialState: 1
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
@@ -1553,8 +1553,6 @@ PlayableDirector:
     value: {fileID: 1581149231}
   - key: {fileID: -3554102804972628116, guid: b0851a8fbc00c0d4c8158dc6778dc5fb, type: 2}
     value: {fileID: 1911306349}
-  - key: {fileID: 6508807938766871375, guid: b0851a8fbc00c0d4c8158dc6778dc5fb, type: 2}
-    value: {fileID: 0}
   - key: {fileID: -1051502061189379019, guid: b0851a8fbc00c0d4c8158dc6778dc5fb, type: 2}
     value: {fileID: 1546928440}
   m_ExposedReferences:
@@ -1741,7 +1739,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh199818
+  m_Name: pb_Mesh20320
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3032,7 +3030,7 @@ PrefabInstance:
     - target: {fileID: 4603457834673658254, guid: c9c4ada2c6fc72a47972cd5e8ab912a7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 140.182
+      value: 134.70201
       objectReference: {fileID: 0}
     - target: {fileID: 4603457834673658254, guid: c9c4ada2c6fc72a47972cd5e8ab912a7,
         type: 3}

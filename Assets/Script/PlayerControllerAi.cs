@@ -15,6 +15,9 @@ public class PlayerControllerAi : MonoBehaviour
     [SerializeField] Animator m_animator;
     NavMeshAgent m_agent;
 
+
+   // public float distance;
+
     void Start()
     {
         m_agent = GetComponent<NavMeshAgent>();
@@ -29,6 +32,7 @@ public class PlayerControllerAi : MonoBehaviour
     void Update()
     {
         // m_target が移動したら Navmesh Agent を使って移動させる
+        //Vector3.Distance(m_cachedTargetPosition, m_target.position) > 0.1f
         if (Vector3.Distance(m_cachedTargetPosition, m_target.position) > 0.1f) // m_target が 10cm 以上移動したら
         {
             m_cachedTargetPosition = m_target.position; // 移動先の座標を保存する
