@@ -40,6 +40,9 @@ public class GrapplingPlayerController : MonoBehaviour
 
     [SerializeField] AudioClip m_attackSfx = null;
 
+   
+
+
     AudioSource audioSource;
 
     Rigidbody m_rb;
@@ -172,6 +175,8 @@ public class GrapplingPlayerController : MonoBehaviour
             }
         }
     }
+    
+
 
     /// <summary>
     /// 地面に接触しているか判定する
@@ -225,7 +230,7 @@ public class GrapplingPlayerController : MonoBehaviour
     }
 
 
-    void m_attackSound()
+    public void m_attackSound()
     {
         audioSource.PlayOneShot(m_attackSfx);
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerHPcontroller : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class PlayerHPcontroller : MonoBehaviour
     /// </summary>
     [SerializeField] int maxHP = 100;
 
+    [SerializeField] GameObject heelEf = null;
+
+    [SerializeField] GameObject heelObj;
+
     //[SerializeField] int maxMP = 100;
 
     /// <summary>
     /// 現在のHP
     /// </summary>
-    int HP = 0;
+    public int HP = 0;
 
     //int MP = 0;
 
@@ -26,6 +31,10 @@ public class PlayerHPcontroller : MonoBehaviour
     public Slider HPbar;
 
     //public Slider MPbar;
+
+    Tween sq = null;
+
+
 
     void Start()
     {
@@ -39,17 +48,7 @@ public class PlayerHPcontroller : MonoBehaviour
         //MP = maxMP;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-        if (other.tag == "HeelItem" && Input.GetKey(""))
-        {
-            HP = HP += 40;
-
-            HPbar.value = (float)HP / (float)maxHP;
-        }
-
-    }
+    
 
     // Update is called once per frame
     /// <summary>
@@ -72,11 +71,27 @@ public class PlayerHPcontroller : MonoBehaviour
             HP = HP - damege;
 
             ///HPをシリンダーに反映させる
-            HPbar.value = (float)HP / (float)maxHP;
+            //HPbar.value = (float)HP / (float)maxHP;
+            sq = DOTween.To(() => HPbar.value,
+                x => HPbar.value = x,
+                (float)HP / maxHP,
+                1f
+                );
 
         }
         
     }
-   
+
+    public void HPheel(int heel) 
+    {
+        //HP = HP + heel;
+        //HPbar.value = (float)HP / (float)maxHP;
+        Instantiate(heelEf, heelObj.transform.position, heelEf.transform.rotation);
+        sq = DOTween.To(() => HPbar.value,
+                x => HPbar.value = x,
+                (float)HP / maxHP,
+                1f
+                );
+    }
 
 }

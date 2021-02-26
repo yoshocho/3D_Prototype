@@ -94992,6 +94992,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 1
   m_Events:
+  - time: 0.33333334
+    functionName: m_attackSound
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: f2e6f1ea4c789e245ad548bc5e8c13dc,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.4
     functionName: Beginmovestop
     data: 
